@@ -24,6 +24,4 @@ To use AI Coder, follow these steps:
 
 ## Who maintains and contributes to AI Coder?
 
-AI Coder is maintained by Humayun Al Rosid, a software engineer and AI enthusiast. You can contact him at humayunalrosid3@gmail.com or @humayanalrosid.
-
 If you want to contribute to AI Coder, you can fork this repository and submit a pull request with your changes. You can also report any issues or suggest any features on the Issues tab.

@@ -22,6 +22,3 @@ To use AI Coder, follow these steps:
 6. Optionally, you can edit the code, run it, and see the result in the console
 7. Optionally, you can save the code to your account by clicking on the Save button
 
-## Who maintains and contributes to AI Coder?
-
-If you want to contribute to AI Coder, you can fork this repository and submit a pull request with your changes. You can also report any issues or suggest any features on the Issues tab.

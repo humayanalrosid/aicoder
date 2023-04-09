@@ -6,11 +6,11 @@ from .models import Code
 
 import openai
 
-# API KEY : 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
+# API KEY : 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
 
 def home(request):
     if not request.user.is_authenticated:
-        return render(request, 'app/home.html')
+        return render(request, 'app/home.html', {'nbar':'home'})
     else:
         return redirect('fix')
 
@@ -28,7 +28,7 @@ def fix(request):
             
             else:
                 # OpenAI Key
-                openai.api_key = "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"
+                openai.api_key = "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"
                 # Create Instance
                 openai.Model.list()
                 
@@ -56,7 +56,7 @@ def fix(request):
                 except Exception as e:
                     return render(request, 'app/fix.html', {'lang_list':lang_list, 'response':e, 'lang': lang})
 
-        return render(request, 'app/fix.html', {'lang_list':lang_list}) 
+        return render(request, 'app/fix.html', {'lang_list':lang_list,'nbar':'fix'}) 
     
     else:
         messages.warning(request, "Please log in to use AI Coder.")
@@ -76,7 +76,7 @@ def suggest(request):
             
             else:
                 # OpenAI Key
-                openai.api_key = "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"
+                openai.api_key = "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"
                 # Create Instance
                 openai.Model.list()
                 
@@ -104,7 +104,7 @@ def suggest(request):
                 except Exception as e:
                     return render(request, 'app/suggest.html', {'lang_list':lang_list, 'response':e, 'lang': lang})
 
-        return render(request, 'app/suggest.html', {'lang_list':lang_list})
+        return render(request, 'app/suggest.html', {'lang_list':lang_list, 'nbar':'suggest'})
 
     else:
         messages.warning(request, "Please log in to use AI Coder.")
@@ -114,7 +114,7 @@ def suggest(request):
 def past_code(request):
     if request.user.is_authenticated:
         code = Code.objects.filter(user=request.user)
-        return render(request, 'app/past.html', {'code':code})
+        return render(request, 'app/past.html', {'code':code, 'nbar':'past'})
     else:
         messages.warning(request, 'Please log in to use AI Coder.')
         return redirect('login')
@@ -124,7 +124,7 @@ def delete_past_code(request, id):
         past = Code.objects.get(id=id)
         past.delete()
         messages.success(request, 'Deleted successfully.')
-        return render(request, 'app/past.html', {'past':past})
+        return redirect('past')
     else:
         messages.warning(request, 'Please log in to use AI Coder.')
         return redirect('login')
@@ -140,7 +140,7 @@ def signup(request):
                 return redirect('login')
         else:
             form = SignUpForm()
-        return render(request, 'app/signup.html', {'form':form})
+        return render(request, 'app/signup.html', {'form':form, 'nbar':'signup'})
     
     else:
         messages.warning(request, "You are already logged in.")
@@ -165,7 +165,7 @@ def user_login(request):
                     return redirect('login')
         else:
             form = LoginForm()
-        return render(request, 'app/login.html', {'form':form})
+        return render(request, 'app/login.html', {'form':form, 'nbar':'login'})
     
     else:
         messages.warning(request, "You are already logged in.")

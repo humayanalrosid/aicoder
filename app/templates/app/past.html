@@ -5,13 +5,15 @@
 
 {% if code %}
 {% for data in code %}
-    {{ data.prompt }} <br>
+<div class="mb-3">
+    <strong>Prompt {{ forloop.counter }}:</strong> {{ data.prompt | capfirst }} <br>
 <pre>
 <code class='line-numbers language-{{ data.lang }}'>
 {{ data.response }}            
 </code>
 </pre>
 <a href="{% url 'delete_past' data.id %}" class="btn btn-danger btn-sm">Delete</a> <br>
+</div>
 {% endfor %}
 {% endif %}
 

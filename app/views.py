@@ -5,8 +5,10 @@ from .forms import SignUpForm, LoginForm
 from .models import Code
 
 import openai
+from aicoder import config
 
-# API KEY : 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
+# OpenAI Key
+openai.api_key = config.api_key
 
 def home(request):
     if not request.user.is_authenticated:
@@ -26,12 +28,7 @@ def fix(request):
                 messages.warning(request, "You forget to pick a programming language.")
                 return render(request, 'app/fix.html', {'lang_list':lang_list, 'code':code, 'lang': lang})
             
-            else:
-                # OpenAI Key
-                openai.api_key = "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"
-                # Create Instance
-                openai.Model.list()
-                
+            else:             
                 # Make request
                 try:
                     api_response = openai.Completion.create(
@@ -75,12 +72,6 @@ def suggest(request):
                 return render(request, 'app/suggest.html', {'lang_list':lang_list, 'code':code, 'lang': lang})
             
             else:
-                # OpenAI Key
-                openai.api_key = "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"
-                # Create Instance
-                openai.Model.list()
-                
-                # Make request
                 try:
                     api_response = openai.Completion.create(
                         engine = 'text-davinci-003',

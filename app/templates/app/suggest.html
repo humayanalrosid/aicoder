@@ -1,0 +1,63 @@
+{% extends 'app/base.html' %}
+
+{% block page %}Suggest{% endblock %}
+
+{% block content %}
+
+{% if response %}
+<pre>
+<code class='line-numbers language-python'>
+{{ response }}
+
+</code>
+</pre>
+    
+    <form action="" method="post" class="mt-5">
+    
+        {% csrf_token %}
+    
+        <div class="mb-3">
+            <label class="form-label">Write prompt</label>
+            <textarea class="form-control" name="code" placeholder="Have AI suggest code?" rows="3"></textarea>
+        </div>
+    
+        <select class="form-select mb-3" name="lang">
+            <option selected>Select programming language</option>
+            {% for lang in lang_list %}
+                <option value="{{ lang }}">{{ lang }}</option>
+            {% endfor %}
+        </select>
+    
+        <input type="submit" value="Generate" class="btn btn-secondary">
+    </form>
+{% else %}
+<pre>
+<code class='line-numbers language-python'>
+if name == "Sony":
+    print("Hello, Sony!")
+else:
+    print("Hello, Friend.")
+</code>
+</pre>
+    
+    <form action="" method="post" class="mt-5">
+    
+        {% csrf_token %}
+    
+        <div class="mb-3">
+            <label class="form-label">Write prompt</label>
+            <textarea class="form-control" name="code" placeholder="Have AI suggest code?" rows="3"></textarea>
+        </div>
+    
+        <select class="form-select mb-3" name="lang">
+            <option selected>Select programming language</option>
+            {% for lang in lang_list %}
+                <option value="{{ lang }}">{{ lang }}</option>
+            {% endfor %}
+        </select>
+    
+        <input type="submit" value="Generate" class="btn btn-secondary">
+    </form>
+{% endif %}
+
+{% endblock %}
